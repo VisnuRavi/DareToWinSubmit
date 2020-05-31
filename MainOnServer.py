@@ -95,7 +95,8 @@ def join(update, context):
 
 
 """
-This function is tied to the /gamestart command, which allows the group to finalise its
+This function is tied to the /gamestart command, 
+which allows the group to finalise its
 players and begin the game
 """
 def gamestart(update, context):
@@ -435,7 +436,8 @@ def check_rest(update, context):
 
 """
 This function is tied to the /nextround command,
-which allows players to go to a new round of the game, while retaining their scores.
+which allows players to go to a new round of the game, 
+while retaining their scores.
 """
 def next_round(update, context):
     player = update.effective_user
@@ -592,6 +594,10 @@ def rules(update, context):
                             \n6. If you pass, the creator of the dare has to do it!")
 
 
+"""
+This function allows the various commands 
+to be directed to the various functions.
+"""
 def main():
     updater = Updater(TOKEN, use_context=True)
     dp = updater.dispatcher

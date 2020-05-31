@@ -319,7 +319,7 @@ def pass_my_dare(update, context):
         games[chat_id].players[player_id][3] = False #reset own dare flag
         #games[chat_id].state['pass_my_dare'] = False
         #games[chat_id].state['done_dare'] = False
-        games[chat_id].change_state_false(['pass_my_dare', 'done_dare'])
+        games[chat_id].change_state_false(['pass_my_dare', 'doing_dare'])
         games[chat_id].voters.clear()
         dare_points = game.dares[player_id][1] 
         current_score = game.players[player_id][1]

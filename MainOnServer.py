@@ -15,7 +15,10 @@ PORT = int(os.environ.get('PORT', 5000))
 TOKEN = ''
 games = {} # dict with key of chat id and value of game object
 
-
+"""
+A class that encapsulates the data needed for a game
+of DareToWin in one Telegram group.
+"""
 class Game: 
     def __init__(self):
         self.players = {}
@@ -45,6 +48,11 @@ class Game:
             self.state[state_type] = False
 
 
+"""
+This function is tied to the /start command, 
+which allows a user to start a game of DareToWin,
+allowing others to join
+"""
 def start(update, context):
     chat_id = update.effective_chat.id
     player = update.effective_user
@@ -62,7 +70,11 @@ def start(update, context):
                                 \nPlease enter /join to join the game!\
                                 \nEnter /gamestart when all players have joined!")
 
-
+"""
+This function is tied to the /join command,
+which allows other users in the group to join the game
+after someone else has started it with /start
+"""
 def join(update, context):
     player = update.effective_user
     player_name = player.first_name
@@ -81,6 +93,11 @@ def join(update, context):
                                     \nWaiting for others to /join!\
                                     \nIf all players are here, /gamestart!")
 
+
+"""
+This function is tied to the /gamestart command, which allows the group to finalise its
+players and begin the game
+"""
 def gamestart(update, context):
     player = update.effective_user
     player_name = player.first_name
@@ -108,7 +125,10 @@ def gamestart(update, context):
                                     \nfrom the dare pool!")
 
 
-
+"""
+This function updates the chat with the next player's dare.
+Used in input_dares, pass_my_dare and check_rest functions.
+"""
 def next_turn(chat_id, context):
     game = games[chat_id]
     next_player_id = game.players_yet_to_play[0]
@@ -128,6 +148,12 @@ def next_turn(chat_id, context):
                             .format(starting_player_name, assigned_dare, assigned_dare_points))
 
 
+"""
+This function is tied to the /dare command, 
+which allows players to enter the number of points their dares are worth 
+and the dares themselves. After every player has placed their dares, 
+the first player will be randomly allocated another player's dare.
+"""
 def input_dare(update, context):
     player = update.effective_user
     player_name = player.first_name
@@ -191,6 +217,11 @@ def input_dare(update, context):
                                 \nNote that dare points must be more than 0")
 
 
+"""
+This function is tied to the /accept command, 
+which allows players, currently playing their turn, 
+to accept the dare and commit to performing it.
+"""
 def accept(update, context):
     player = update.effective_user
     player_name = player.first_name
@@ -210,7 +241,12 @@ def accept(update, context):
                                 player_name + ' has accepted the dare! Enter /donedare after you have '
                                   ' sent a video of yourself doing the dare, ' + player_name)
 
-
+        
+"""
+This function is tied to the /pass command, 
+which allows players, currently playing their turn,
+to pass the dare to its original creator.
+"""
 def pass_dare(update, context):
     player = update.effective_user
     player_name = player.first_name
@@ -239,6 +275,12 @@ def pass_dare(update, context):
                                 ' /passmydare')
 
 
+"""
+This function is tied to the /passmydare command, which allows the creator of a dare,
+when their own dare has been passed back to them during another player's turn,
+to pass up on doing it. If all players have finished this round, players can
+either choose to go another round or end the game.
+"""
 def pass_my_dare(update, context):
     player = update.effective_user
     player_name = player.first_name
@@ -271,7 +313,11 @@ def pass_my_dare(update, context):
             #Next player's turn
             next_turn(chat_id, context)
 
-
+"""
+This function is tied to the /donedare command, 
+which allows players, who are currently playing their turn,
+to indicate that they have completed their dare.
+"""
 def done_dare(update, context):
     player = update.effective_user
     player_name = player.first_name
@@ -293,6 +339,17 @@ def done_dare(update, context):
                                 ' if you are EEEVIIIL MUAHAHAHA!!!')
 
 
+"""
+This function is tied to the /vote command,
+which allows players to vote after the current player has done the dare.
+If more than half of the remaining players vote yes, the current player gets the
+points allocated to the dare. If more than half of the remaining players vote no,
+and if current player is the one who created the dare, the player is deducted half
+the points allocated to the dare. Special case if the current player fails the dare
+he created himself, in which he is deducted the full points allocated to the dare.
+If all players have finished this round, players can
+either choose to go another round or end the game.
+"""
 def check_rest(update, context):
     player = update.effective_user
     player_name = player.first_name
@@ -376,7 +433,10 @@ def check_rest(update, context):
                     #Next player's turn
                     next_turn(chat_id, context)
 
-
+"""
+This function is tied to the /nextround command,
+which allows players to go to a new round of the game, while retaining their scores.
+"""
 def next_round(update, context):
     player = update.effective_user
     player_name = player.first_name
@@ -398,7 +458,11 @@ def next_round(update, context):
                                 'Next round has started, use /dare again so that everyone can'
                                 ' input their dares for the next round!')
 
-
+"""
+This function is tied to the /endgame command,
+which allows players to end the game to see who won the game 
+and got the highest score amongst the players.
+"""
 def end_game(update, context):
     player = update.effective_user
     player_name = player.first_name
@@ -433,7 +497,11 @@ def end_game(update, context):
                                 "Thanks for playing! See you again, if you dare!!!")
         del games[chat_id]
 
-
+"""
+This function is tied to the /order command, 
+which allows players to see who is currently having their turn
+and in what order the turns are played.
+"""
 def order(update, context):
     chat_id = update.effective_chat.id
     if chat_id in games.keys() and games[chat_id].current_player_id:
@@ -458,7 +526,11 @@ def order(update, context):
                                     .format(current_player_name))
 
 
-
+"""
+This function is tied to the /cancel function, 
+which allows players to cancel the game while it
+is still ongoing.
+"""
 def cancel(update, context):
     chat_id = update.effective_chat.id
     player = update.effective_user
@@ -469,7 +541,11 @@ def cancel(update, context):
                                 "The game has been cancelled!\
                                 \nThanks for playing!")
 
-
+"""
+This function is tied to the /players command,
+which allows players to see the current players in the game 
+and their respective scores.
+"""
 def all_players(update, context):
     result = ''
     chat_id = update.effective_chat.id
@@ -484,6 +560,12 @@ def all_players(update, context):
         else:
             context.bot.send_message(chat_id, result)
 
+
+"""
+This function is tied to the /help command,
+which allows players to see all the commands needed
+to get started with the game.
+"""
 def help(update, context):
     chat_id = update.effective_chat.id
     context.bot.send_message(chat_id,
@@ -493,7 +575,10 @@ def help(update, context):
                             \nalong with their scores\
                             \n/cancel: cancels the game')
 
-
+"""
+This function is tied to the /rules command,
+which allow players to get a grasp of how the game is to be played.
+"""
 def rules(update, context):
     chat_id = update.effective_chat.id
     context.bot.send_message(chat_id,

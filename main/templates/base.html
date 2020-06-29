@@ -48,10 +48,9 @@
 
 {% block content %}
     {% if form0 %}
-        <form class="form-inline" style='text-align:center'>
-            <i class="fas fa-search" aria-hidden="true"></i>
-                {{ wtf.quick_form(form0, action = url_for("search")) }}
-        </form>
+        <div class="form-inline d-flex justify-content-center md-form form-sm mt-0" style='text-align:center'>            
+            {{ wtf.quick_form(form0, action = url_for("search"), method = 'POST') }}:w
+        </div>
     {% endif %}
 
     <div class="container">

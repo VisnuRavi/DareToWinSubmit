@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+    <h1>Welcome {{ current_user.badge }} {{ current_user.name }}!</h1>
+    {{ wtf.quick_form(form, action = url_for("upload"), method = 'POST', enctype = 'multipart/form-data') }}
+    {% if not posts %}
+        <h3 style="text-align: center;">
+            There are no posts yet :(<br>
+            Be the first to upload or head to Explore to follow other users and populate your feed!
+        </h3>
+    {% endif %}
+    <br>
+    {% for post in posts %}
+        {% include '_post.html' %}
+    {% endfor %}
+    <br>
+    {% include '_paginate.html' %}
+{% endblock %}

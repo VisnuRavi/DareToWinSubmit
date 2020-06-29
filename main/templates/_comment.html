@@ -1,0 +1,21 @@
+<table class="table table-hover">
+    <tr>
+        <td width="70px">
+            <a href="{{ url_for('profile', username = comment.user.username) }}">
+                <img src="{{ comment.user.avatar(70) }}" />
+            </a>
+        </td>
+        <td><a href='{{ url_for("profile", username = comment.user.username) }}'>{{ comment.user.badge }} {{ comment.user.username }}</a>:
+            <br>
+            {{ comment.content }} {{ moment(comment.timestamp).fromNow() }}
+        </td>
+        {% if current_user == comment.user %}
+            <td align='right'>
+                <form action="{{ url_for('delete_comment', comment_id = comment.id) }}" method="POST">
+                    {{ form2.hidden_tag() }}
+                    {{ form2.submit(value='Delete Comment', class_='btn btn-default') }}
+                </form>
+            </td>
+        {% endif %}
+    </tr>
+</table>

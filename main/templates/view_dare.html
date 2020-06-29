@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+    {% if dare.banned == 1 %}
+        <h2>This dare has been banned for {{ dare.ban_reason }}</h2>
+    {% endif %}
+    <h3>Viewing {{ dare.dare }} by {{ dare.user.badge }} {{ dare.user.username }} created {{ moment(dare.timestamp).fromNow() }} with {{ dare.votes }} upvotes</h3>
+    {% if current_user == dare.user %}
+        <form action ='{{ url_for("delete_dare", prev = prev, dare_id = dare.id) }}' method='POST'>
+            {{ form3.hidden_tag() }}
+            {{ form3.submit(value = 'Delete dare', class_='btn btn-default') }}
+        </form>
+    {% endif %}
+    <video width="640" height="480" controls>
+        <source src="{{ url_for('open_dare', dare_id = dare.id) }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <br>
+    <br>
+    {% if current_user.id == 1 %}
+        <div class="row">
+            <div class="col-md-4">
+                {{ wtf.quick_form(form4, action = url_for("ban"), method = 'POST') }}
+            </div>
+        </div>
+        <br>
+    {% endif %}
+    <form action='{{ url_for("vote", dare_id = dare.id) }}' method='POST'>
+        {{ form.hidden_tag() }}
+        {% if current_user != dare.user and not voted %}
+            {{ form.submit(value = 'Upvote', class_='btn btn-default') }}
+        {% elif curren_user != dare.user and voted %}
+            {{ form.submit(value = 'Remove vote', class_='btn btn-default') }}
+        {% endif %}
+    </form>
+    <br>
+    <h3>Comments</h3>
+    <div class="row">
+        <div class="col-md-4">
+            {{ wtf.quick_form(form1, action = url_for("comment", dare_id = dare.id), method = 'POST') }}
+        </div>
+    </div>
+    {% for comment in comments %}
+        {% include '_comment.html' %}
+    {% endfor %}
+{% endblock %}

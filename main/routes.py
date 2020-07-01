@@ -306,7 +306,9 @@ def leaderboard():
         if posts.has_next else None
     prev_url = url_for('leaderboard', page = posts. prev_num)\
         if posts.has_prev else None
-    return render_template('leaderboard.html', title = 'Leadeboard', posts = posts.items, next_url = next_url, prev_url = prev_url, form3 = form3, form0 = form0)
+    page_num = request.args.get('page', '1')
+    start_num = int(page_num) * 3 - 2
+    return render_template('leaderboard.html', title = 'Leadeboard', posts = posts.items, next_url = next_url, prev_url = prev_url, form3 = form3, form0 = form0, start_num = start_num)
 
 
 @app.route('/search', methods = ['POST'])

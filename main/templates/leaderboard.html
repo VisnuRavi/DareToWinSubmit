@@ -3,7 +3,7 @@
 {% block app_content %}
     <h1>Leaderboard</h1>
     {% for post in posts %}
-        <ol>
+        <ol start={{ start_num }}>
             <li>{% include '_post.html' %}</li>
         </ol>
     {% endfor %}

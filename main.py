@@ -121,9 +121,11 @@ def next_turn(chat_id, context):
     #games[chat_id].state['pass_dare'] = True
     games[chat_id].change_state_true(['accept', 'pass_dare'])
     context.bot.send_message(chat_id, 
-                            "{}'s dare is {}, worth {} point(s), enter /accept\
-                            if you are DARING or /pass if you want to pass the dare\
-                            to its creator to do it!"
+                            "{}'s dare is {},\
+                            \nworth {} point(s),\
+                            \nenter /accept if you are DARING\
+                            \nor /pass if you want to pass the dare\
+                            \nto its creator to do it!"
                             .format(starting_player_name, assigned_dare, assigned_dare_points))
 
 

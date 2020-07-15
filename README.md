@@ -3,7 +3,8 @@
 ## Introduction
 This Telegram bot is a modern take on the spin the bottle game<br>
 where players come up with dares for other players to perform<br>
-and also perform dares that other players have come up with!
+and also perform dares that other players have come up with!<br>
+Try it now by adding @daretowinbot to your Telegram group!
 
 ## Video Demo
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=mr-PCr-bi8Q

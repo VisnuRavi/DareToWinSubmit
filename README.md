@@ -10,7 +10,7 @@ Try it now by adding @daretowinbot to your Telegram group!
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=mr-PCr-bi8Q
 " target="_blank"><img src="http://img.youtube.com/vi/mr-PCr-bi8Q/0.jpg" 
 alt="IMAGE ALT TEXT HERE" width="480" height="360" border="0" /></a><br>
-This demo also includes the companion social media webapp, which can be accessed <a href='https://daretowinweb.herokuapp.com/' target='_blank'>here</a><br>
+This demo also includes the <a href='https://daretowinweb.herokuapp.com/' target='_blank'>companion social media webapp</a>, which allows registered users to share their dares<br>
 The github page for the webapp can be found <a href=https://github.com/joncao159/DareToWinWebapp>here</a>
 
 ## Game Flow

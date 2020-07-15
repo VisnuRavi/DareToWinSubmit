@@ -15,3 +15,10 @@ The github page for the webapp can be found <a href=https://github.com/joncao159
 
 ## Game Flow
 ![alt text](https://github.com/VisnuRavi/DareToWinSubmit/blob/master/daretowinbot_gameflow.jpg)
+
+## Tech Stack
+Python
+<a href=https://python-telegram-bot.readthedocs.io/en/stable/>python-telegram-bot Library</a>
+
+## References
+Some examples of Telegram bots can be found <a href=https://github.com/python-telegram-bot/python-telegram-bot/tree/master/examples>here</a>

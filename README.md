@@ -25,4 +25,4 @@ The github page for the webapp can be found <a href=https://github.com/joncao159
 Some code examples of Telegram bots can be found <a href=https://github.com/python-telegram-bot/python-telegram-bot/tree/master/examples>here</a>
 
 ## Contributions
-This DareToWin webapp was created by <a href='https://github.com/VisnuRavi'>Visnu</a> and <a href='https://github.com/joncao159'>Jonathan</a>.
+This DareToWin telebot was created by <a href='https://github.com/VisnuRavi'>Visnu</a> and <a href='https://github.com/joncao159'>Jonathan</a>.

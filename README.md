@@ -1,4 +1,5 @@
 # DareToWinBot
+Do you dare to play?
 
 ## Introduction
 This Telegram bot is a modern take on the spin the bottle game<br>

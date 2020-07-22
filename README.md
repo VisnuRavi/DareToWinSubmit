@@ -20,6 +20,7 @@ The github page for the webapp can be found <a href=https://github.com/joncao159
 ## Tech Stack
 * Python
 * <a href=https://python-telegram-bot.readthedocs.io/en/stable/>python-telegram-bot Library</a>
+* Heroku Cloud Application Platform
 
 ## References
 Some code examples of Telegram bots can be found <a href=https://github.com/python-telegram-bot/python-telegram-bot/tree/master/examples>here</a>
